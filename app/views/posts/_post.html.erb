@@ -1,0 +1,32 @@
+<div id="<%= dom_id post %>">
+  <p>
+    <strong>Title:</strong>
+    <%= post.title %>
+  </p>
+  <p>
+    <strong>Fan Video:</strong><br />
+    <% if post.fan_video.attached? %>
+      <%= video_tag("http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(post.fan_video, only_path: true)}", size: "200x200", controls: true) %>
+    <% end %>
+  </p>
+  <p>
+    <strong>Player Video:</strong><br />
+    <% if post.player_video.attached? %>
+      <%= video_tag("http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(post.player_video, only_path: true)}", size: "200x200", controls: true) %>
+    <% end %>
+  </p>
+
+   <p>
+    <strong>Merge Video:</strong><br />
+     <% if post.merge_video.attached? %>
+      <%= video_tag("http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(post.merge_video, only_path: true)}", size: "200x200", controls: true) %>
+      <br />
+      <%= link_to("delete merge video", delete_merge_video_post_path(post))%>
+     <% else %>
+      <%= link_to("merge above video", merge_post_path(post))%>
+     <% end %>
+  </p>
+
+</div>
+
+<br /><br /><br /><br /><br />
